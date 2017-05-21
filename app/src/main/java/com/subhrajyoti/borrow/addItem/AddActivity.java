@@ -11,7 +11,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.subhrajyoti.borrow.R;
-import com.subhrajyoti.borrow.db.ItemAndPerson;
+import com.subhrajyoti.borrow.db.BorrowModel;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -41,10 +41,9 @@ public class AddActivity extends AppCompatActivity implements DatePickerDialog.O
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addBorrowViewModel.addBorrow(new ItemAndPerson(0,
+                addBorrowViewModel.addBorrow(new BorrowModel(0,
                         ((EditText) findViewById(R.id.itemName)).getText().toString(),
-                        ((EditText) findViewById(R.id.firstName)).getText().toString(),
-                        ((EditText) findViewById(R.id.lastName)).getText().toString(),
+                        ((EditText) findViewById(R.id.personName)).getText().toString(),
                         date
                 ));
                 finish();

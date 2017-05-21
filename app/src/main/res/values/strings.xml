@@ -3,7 +3,6 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_add">AddActivity</string>
     <string name="item_name">Item Name</string>
-    <string name="first_name">First Name</string>
-    <string name="last_name">Last Name</string>
+    <string name="person_name">Person Name</string>
     <string name="set_date">Set Date</string>
 </resources>

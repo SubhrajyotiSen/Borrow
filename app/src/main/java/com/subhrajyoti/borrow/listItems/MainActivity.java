@@ -13,7 +13,7 @@ import android.view.View;
 
 import com.subhrajyoti.borrow.R;
 import com.subhrajyoti.borrow.addItem.AddActivity;
-import com.subhrajyoti.borrow.db.ItemAndPerson;
+import com.subhrajyoti.borrow.db.BorrowModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,16 +40,16 @@ public class MainActivity extends LifecycleActivity {
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerViewAdapter = new RecyclerViewAdapter(new ArrayList<ItemAndPerson>());
+        recyclerViewAdapter = new RecyclerViewAdapter(new ArrayList<BorrowModel>());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         recyclerView.setAdapter(recyclerViewAdapter);
 
         viewModel = ViewModelProviders.of(this).get(BorrowedListViewModel.class);
 
-        viewModel.getItemAndPersonList().observe(MainActivity.this, new Observer<List<ItemAndPerson>>() {
+        viewModel.getItemAndPersonList().observe(MainActivity.this, new Observer<List<BorrowModel>>() {
             @Override
-            public void onChanged(@Nullable List<ItemAndPerson> itemAndPeople) {
+            public void onChanged(@Nullable List<BorrowModel> itemAndPeople) {
                 recyclerViewAdapter.addItems(itemAndPeople);
             }
         });

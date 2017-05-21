@@ -12,20 +12,15 @@ import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 
 @Dao
 @TypeConverters(DateConverter.class)
-public interface ItemAndPersonDao {
+public interface BorrowModelDao {
 
-    @Query("select * from ItemAndPerson")
-    LiveData<List<ItemAndPerson>> getAllBorrowedItems();
+    @Query("select * from BorrowModel")
+    LiveData<List<BorrowModel>> getAllBorrowedItems();
 
-    @Query("select * from ItemAndPerson where id = :id")
-    ItemAndPerson getItembyId(String id);
-
-
-    @Query("select * from ItemAndPerson where itemName like :itemName")
-    List<ItemAndPerson> getItemsByName(String itemName);
+    @Query("select * from BorrowModel where id = :id")
+    BorrowModel getItembyId(String id);
 
     @Insert(onConflict = REPLACE)
-    void addBorrow(ItemAndPerson itemAndPerson);
-
+    void addBorrow(BorrowModel borrowModel);
 
 }

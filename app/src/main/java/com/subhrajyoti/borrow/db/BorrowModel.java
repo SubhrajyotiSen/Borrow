@@ -1,6 +1,5 @@
 package com.subhrajyoti.borrow.db;
 
-import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverters;
@@ -8,23 +7,19 @@ import android.arch.persistence.room.TypeConverters;
 import java.util.Date;
 
 @Entity
-public class ItemAndPerson {
+public class BorrowModel {
 
     @PrimaryKey(autoGenerate = true)
     public int id;
-
     private String itemName;
-    private String firstName;
-    @ColumnInfo(name = "last_name")
-    private String lastName;
+    private String personName;
     @TypeConverters(DateConverter.class)
     private Date borrowDate;
 
-    public ItemAndPerson(int id, String itemName, String firstName, String lastName, Date borrowDate) {
+    public BorrowModel(int id, String itemName, String personName, Date borrowDate) {
         this.id = id;
         this.itemName = itemName;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.personName = personName;
         this.borrowDate = borrowDate;
     }
 
@@ -32,12 +27,8 @@ public class ItemAndPerson {
         return itemName;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
+    public String getPersonName() {
+        return personName;
     }
 
     public Date getBorrowDate() {

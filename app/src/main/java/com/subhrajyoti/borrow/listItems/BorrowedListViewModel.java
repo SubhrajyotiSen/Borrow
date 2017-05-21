@@ -5,14 +5,14 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 
 import com.subhrajyoti.borrow.db.AppDatabase;
-import com.subhrajyoti.borrow.db.ItemAndPerson;
+import com.subhrajyoti.borrow.db.BorrowModel;
 
 import java.util.List;
 
 
 public class BorrowedListViewModel extends AndroidViewModel {
 
-    private final LiveData<List<ItemAndPerson>> itemAndPersonList;
+    private final LiveData<List<BorrowModel>> itemAndPersonList;
 
     private AppDatabase appDatabase;
 
@@ -25,7 +25,7 @@ public class BorrowedListViewModel extends AndroidViewModel {
     }
 
 
-    public LiveData<List<ItemAndPerson>> getItemAndPersonList() {
+    public LiveData<List<BorrowModel>> getItemAndPersonList() {
         return itemAndPersonList;
     }
 }
