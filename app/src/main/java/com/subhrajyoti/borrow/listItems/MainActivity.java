@@ -35,7 +35,7 @@ public class MainActivity extends LifecycleActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(new Intent(MainActivity.this, AddActivity.class), 1);
+                startActivity(new Intent(MainActivity.this, AddActivity.class));
             }
         });
 
