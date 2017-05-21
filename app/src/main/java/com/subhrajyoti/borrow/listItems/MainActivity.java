@@ -55,6 +55,18 @@ public class MainActivity extends LifecycleActivity {
             }
         });
 
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerView, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+                viewModel.deleteItem(position);
+            }
+        }));
+
 
     }
 

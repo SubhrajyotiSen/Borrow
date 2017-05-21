@@ -28,4 +28,14 @@ public class BorrowedListViewModel extends AndroidViewModel {
     public LiveData<List<BorrowModel>> getItemAndPersonList() {
         return itemAndPersonList;
     }
+
+    public void deleteItem(final int position) {
+        Thread thread = new Thread(new Runnable() {
+            public void run() {
+                appDatabase.itemAndPersonModel().deleteBorrow(itemAndPersonList.getValue().get(position));
+            }
+        });
+        thread.start();
+    }
+
 }
