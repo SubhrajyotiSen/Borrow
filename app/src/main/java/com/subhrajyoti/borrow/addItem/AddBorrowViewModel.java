@@ -14,7 +14,7 @@ public class AddBorrowViewModel extends AndroidViewModel {
     public AddBorrowViewModel(Application application) {
         super(application);
 
-        appDatabase = AppDatabase.getInMemoryDatabase(this.getApplication());
+        appDatabase = AppDatabase.getDatabase(this.getApplication());
 
     }
 

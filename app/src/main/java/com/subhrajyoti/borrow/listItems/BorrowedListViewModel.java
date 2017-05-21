@@ -19,7 +19,7 @@ public class BorrowedListViewModel extends AndroidViewModel {
     public BorrowedListViewModel(Application application) {
         super(application);
 
-        appDatabase = AppDatabase.getInMemoryDatabase(this.getApplication());
+        appDatabase = AppDatabase.getDatabase(this.getApplication());
 
         itemAndPersonList = appDatabase.itemAndPersonModel().getAllBorrowedItems();
     }
