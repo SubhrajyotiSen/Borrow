@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.subhrajyoti.borrow.R;
 import com.subhrajyoti.borrow.db.BorrowModel;
@@ -22,6 +23,9 @@ public class AddActivity extends AppCompatActivity implements DatePickerDialog.O
     private DatePickerDialog datePickerDialog;
     private Calendar calendar;
 
+    private EditText itemEditText;
+    private EditText nameEditText;
+
     private AddBorrowViewModel addBorrowViewModel;
 
     @Override
@@ -31,6 +35,8 @@ public class AddActivity extends AppCompatActivity implements DatePickerDialog.O
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        itemEditText = (EditText) findViewById(R.id.itemName);
+        nameEditText = (EditText) findViewById(R.id.personName);
 
         calendar = Calendar.getInstance();
         addBorrowViewModel = ViewModelProviders.of(this).get(AddBorrowViewModel.class);
@@ -41,12 +47,16 @@ public class AddActivity extends AppCompatActivity implements DatePickerDialog.O
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addBorrowViewModel.addBorrow(new BorrowModel(0,
-                        ((EditText) findViewById(R.id.itemName)).getText().toString(),
-                        ((EditText) findViewById(R.id.personName)).getText().toString(),
-                        date
-                ));
-                finish();
+                if (itemEditText.getText() == null || nameEditText.getText() == null || date == null)
+                    Toast.makeText(AddActivity.this, "Missing fields", Toast.LENGTH_SHORT).show();
+                else {
+                    addBorrowViewModel.addBorrow(new BorrowModel(0,
+                            itemEditText.getText().toString(),
+                            nameEditText.getText().toString(),
+                            date
+                    ));
+                    finish();
+                }
             }
         });
 
