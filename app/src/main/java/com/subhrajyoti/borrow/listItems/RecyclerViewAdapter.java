@@ -14,9 +14,11 @@ import java.util.List;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder> {
 
     private List<BorrowModel> borrowModelList;
+    private View.OnLongClickListener longClickListener;
 
-    public RecyclerViewAdapter(List<BorrowModel> borrowModelList) {
+    public RecyclerViewAdapter(List<BorrowModel> borrowModelList, View.OnLongClickListener longClickListener) {
         this.borrowModelList = borrowModelList;
+        this.longClickListener = longClickListener;
     }
 
     @Override
@@ -31,6 +33,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.itemTextView.setText(borrowModel.getItemName());
         holder.nameTextView.setText(borrowModel.getPersonName());
         holder.dateTextView.setText(borrowModel.getBorrowDate().toLocaleString().substring(0, 11));
+        holder.itemView.setTag(borrowModel);
+        holder.itemView.setOnLongClickListener(longClickListener);
     }
 
     @Override

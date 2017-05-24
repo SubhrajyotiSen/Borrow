@@ -30,8 +30,8 @@ public class BorrowedListViewModel extends AndroidViewModel {
         return itemAndPersonList;
     }
 
-    public void deleteItem(int position) {
-        new deleteAsyncTask(appDatabase).execute(itemAndPersonList.getValue().get(position));
+    public void deleteItem(BorrowModel borrowModel) {
+        new deleteAsyncTask(appDatabase).execute(borrowModel);
     }
 
     private static class deleteAsyncTask extends AsyncTask<BorrowModel, Void, Void> {

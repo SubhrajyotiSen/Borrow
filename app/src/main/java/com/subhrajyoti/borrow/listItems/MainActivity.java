@@ -19,7 +19,7 @@ import com.subhrajyoti.borrow.db.BorrowModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends LifecycleActivity {
+public class MainActivity extends LifecycleActivity implements View.OnLongClickListener {
 
     private BorrowedListViewModel viewModel;
     private RecyclerViewAdapter recyclerViewAdapter;
@@ -41,7 +41,7 @@ public class MainActivity extends LifecycleActivity {
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerViewAdapter = new RecyclerViewAdapter(new ArrayList<BorrowModel>());
+        recyclerViewAdapter = new RecyclerViewAdapter(new ArrayList<BorrowModel>(), this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         recyclerView.setAdapter(recyclerViewAdapter);
@@ -55,24 +55,18 @@ public class MainActivity extends LifecycleActivity {
             }
         });
 
-        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerView, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-                viewModel.deleteItem(position);
-            }
-        }));
-
-
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         AppDatabase.destroyInstance();
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        BorrowModel borrowModel = (BorrowModel) v.getTag();
+        viewModel.deleteItem(borrowModel);
+        return true;
     }
 }
