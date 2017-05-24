@@ -3,6 +3,7 @@ package com.subhrajyoti.borrow.listItems;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.os.AsyncTask;
 
 import com.subhrajyoti.borrow.db.AppDatabase;
 import com.subhrajyoti.borrow.db.BorrowModel;
@@ -29,13 +30,24 @@ public class BorrowedListViewModel extends AndroidViewModel {
         return itemAndPersonList;
     }
 
-    public void deleteItem(final int position) {
-        Thread thread = new Thread(new Runnable() {
-            public void run() {
-                appDatabase.itemAndPersonModel().deleteBorrow(itemAndPersonList.getValue().get(position));
-            }
-        });
-        thread.start();
+    public void deleteItem(int position) {
+        new deleteAsyncTask(appDatabase).execute(itemAndPersonList.getValue().get(position));
+    }
+
+    private static class deleteAsyncTask extends AsyncTask<BorrowModel, Void, Void> {
+
+        private AppDatabase db;
+
+        deleteAsyncTask(AppDatabase appDatabase) {
+            db = appDatabase;
+        }
+
+        @Override
+        protected Void doInBackground(final BorrowModel... params) {
+            db.itemAndPersonModel().deleteBorrow(params[0]);
+            return null;
+        }
+
     }
 
 }
