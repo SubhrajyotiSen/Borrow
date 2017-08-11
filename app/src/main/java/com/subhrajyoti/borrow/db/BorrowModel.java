@@ -16,8 +16,7 @@ public class BorrowModel {
     @TypeConverters(DateConverter.class)
     private Date borrowDate;
 
-    public BorrowModel(int id, String itemName, String personName, Date borrowDate) {
-        this.id = id;
+    public BorrowModel(String itemName, String personName, Date borrowDate) {
         this.itemName = itemName;
         this.personName = personName;
         this.borrowDate = borrowDate;

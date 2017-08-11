@@ -31,7 +31,7 @@ public class MainActivity extends LifecycleActivity implements View.OnLongClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,7 +40,7 @@ public class MainActivity extends LifecycleActivity implements View.OnLongClickL
         });
 
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recyclerView);
         recyclerViewAdapter = new RecyclerViewAdapter(new ArrayList<BorrowModel>(), this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

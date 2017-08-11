@@ -32,25 +32,25 @@ public class AddActivity extends AppCompatActivity implements DatePickerDialog.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        itemEditText = (EditText) findViewById(R.id.itemName);
-        nameEditText = (EditText) findViewById(R.id.personName);
+        itemEditText = findViewById(R.id.itemName);
+        nameEditText = findViewById(R.id.personName);
 
         calendar = Calendar.getInstance();
         addBorrowViewModel = ViewModelProviders.of(this).get(AddBorrowViewModel.class);
 
         datePickerDialog = new DatePickerDialog(this, AddActivity.this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (itemEditText.getText() == null || nameEditText.getText() == null || date == null)
                     Toast.makeText(AddActivity.this, "Missing fields", Toast.LENGTH_SHORT).show();
                 else {
-                    addBorrowViewModel.addBorrow(new BorrowModel(0,
+                    addBorrowViewModel.addBorrow(new BorrowModel(
                             itemEditText.getText().toString(),
                             nameEditText.getText().toString(),
                             date
