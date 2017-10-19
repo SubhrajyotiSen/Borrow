@@ -13,7 +13,6 @@ import android.view.View;
 
 import com.subhrajyoti.borrow.R;
 import com.subhrajyoti.borrow.addItem.AddActivity;
-import com.subhrajyoti.borrow.db.AppDatabase;
 import com.subhrajyoti.borrow.db.BorrowModel;
 
 import java.util.ArrayList;
@@ -55,12 +54,6 @@ public class MainActivity extends LifecycleActivity implements View.OnLongClickL
             }
         });
 
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        AppDatabase.destroyInstance();
     }
 
     @Override
