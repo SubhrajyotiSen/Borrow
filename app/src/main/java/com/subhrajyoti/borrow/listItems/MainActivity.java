@@ -1,12 +1,12 @@
 package com.subhrajyoti.borrow.listItems;
 
-import android.arch.lifecycle.LifecycleActivity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -18,7 +18,7 @@ import com.subhrajyoti.borrow.db.BorrowModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends LifecycleActivity implements View.OnLongClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnLongClickListener {
 
     private BorrowedListViewModel viewModel;
     private RecyclerViewAdapter recyclerViewAdapter;
